@@ -126,9 +126,23 @@ function getPredictionArray(
 
 module.exports = function makePrediction(
   data,
-  numberOfPredictions,
-  sizeOfGroup
+  numberOfPredictions = 1,
+  sizeOfGroup = 4
 ) {
+  //Simple and minimal error handling
+
+  if (typeof data !== "object" || !data.length) {
+    throw new Error("data should be an array");
+  } else if (data.length <= 2) {
+    throw new Error(
+      "You should provide at least two values in your data to be able to forecast new data"
+    );
+  } else if (data.length < sizeOfGroup) {
+    throw new Error(
+      "Your data should at least be equal to the size of the group"
+    );
+  }
+
   //Get an array of the moving averages of the data
   //If the number of observartions is even, this function will calculate te Central Moving Average too.
   const movingAveragesArray = getMovingAverages(data, sizeOfGroup);
