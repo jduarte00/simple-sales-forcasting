@@ -1,0 +1,19 @@
+{
+  "name": "simple-sales-forecasting",
+  "version": "1.0.1",
+  "description": "A simple forecasting function to pronosticate sales on a time series",
+  "main": "index.js",
+  "author": "Jose Antonio Duarte Mendieta",
+  "license": "MIT",
+  "dependencies": {
+    "ml-regression-simple-linear": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jduarte00/simple-sales-forcasting"
+  },
+  "scripts": {
+    "test": "node ./test/index.test.js",
+    "prepublish": "npm test"
+  }
+}
