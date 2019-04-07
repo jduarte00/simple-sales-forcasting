@@ -1,6 +1,6 @@
 {
   "name": "simple-sales-forecasting",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple forecasting function to pronosticate sales on a time series",
   "main": "index.js",
   "author": "Jose Antonio Duarte Mendieta",
