@@ -7,5 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "ml-regression-simple-linear": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jduarte00/simple-sales-forcasting"
   }
 }
