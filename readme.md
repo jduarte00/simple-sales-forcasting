@@ -17,14 +17,11 @@ The function will return an object with two arrays, _time_, that contains the nu
 ## Typical Example
 
 ```javascript
-const forecastedValuesObject =
-  simple -
-  sales -
-  forecasting(
-    [13409, 29389, 128940, 490059, 290394, 1928904, 3892019, 2903945],
-    2,
-    4
-  );
+const forecastedValuesObject = simpleSalesForecasting(
+  [13409, 29389, 128940, 490059, 290394, 1928904, 3892019, 2903945],
+  2,
+  4
+);
 
 /* forecastedValuesObject will contain the following object
 {time: [9,10],
