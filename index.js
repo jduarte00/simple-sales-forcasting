@@ -7,7 +7,6 @@ function sumTheNumbers(data, top, start) {
   for (let i = start; i <= top; i++) {
     sum += data[i];
   }
-
   return sum;
 }
 
@@ -19,7 +18,9 @@ function getMovingAverages(data, sizeOfGroup) {
   for (let i = startingPoint; i < data.length; i++) {
     /* const sumOfElements = (data[i-3] + data[i-2] + data[i-1] + data[i]); */
     /* arrayOfMovingAverages.push(sumOfElements/sizeOfGroup); */
-    arrayOfMovingAverages.push(sumTheNumbers(data, i, i - (sizeOfGroup - 1)));
+    arrayOfMovingAverages.push(
+      sumTheNumbers(data, i, i - (sizeOfGroup - 1)) / sizeOfGroup
+    );
   }
 
   if (sizeOfGroup % 2 === 0) {
@@ -46,34 +47,36 @@ function getSeasonalityAndIrregularity(data, sizeOfGroup, movingAverages) {
   let seasonalityAndIrregularityArray = movingAverages.map((item, index) => {
     return data[startingPoint + index] / item;
   });
+
   return seasonalityAndIrregularityArray;
 }
 
 //Function to get only the seasonality of a series
 function getOnlySeasonality(seasonalityPlusIrregularity, sizeOfGroup) {
-  let sesonality = {};
+  let seasonality = {};
   let seasonalityFinal = {};
   let sumReducer = (total, sum) => {
     return total + sum;
   };
   let startingPoint = sizeOfGroup - 1;
   for (let i = 0; i < seasonalityPlusIrregularity.length; i++) {
-    let indexToPoint = (startingPoint + i) % 4;
-    if (sesonality[indexToPoint]) {
-      sesonality[indexToPoint].push(seasonalityPlusIrregularity[i]);
+    let indexToPoint = (startingPoint + i) % sizeOfGroup;
+
+    if (seasonality[indexToPoint]) {
+      seasonality[indexToPoint].push(seasonalityPlusIrregularity[i]);
     } else {
-      sesonality[indexToPoint] = [];
-      sesonality[indexToPoint].push(seasonalityPlusIrregularity[i]);
+      seasonality[indexToPoint] = [];
+      seasonality[indexToPoint].push(seasonalityPlusIrregularity[i]);
     }
   }
 
-  for (let i = 0; i < Object.keys(sesonality).length; i++) {
+  for (let i = 0; i < Object.keys(seasonality).length; i++) {
     if (i === 0) {
-      seasonalityFinal[4] =
-        sesonality[i].reduce(sumReducer) / sesonality[i].length;
+      seasonalityFinal[sizeOfGroup] =
+        seasonality[i].reduce(sumReducer) / seasonality[i].length;
     } else {
       seasonalityFinal[i] =
-        sesonality[i].reduce(sumReducer) / sesonality[i].length;
+        seasonality[i].reduce(sumReducer) / seasonality[i].length;
     }
   }
   return seasonalityFinal;
