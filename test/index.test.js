@@ -1,6 +1,33 @@
 const simpleSalesForcasting = require("../index");
 
-const asnwerOne = simpleSalesForcasting([1, 2, 3, 4, 5, 6], 1, 2);
+const asnwerOne = simpleSalesForcasting(
+  [
+    4.8,
+    4.1,
+    6.0,
+    6.5,
+    5.8,
+    5.2,
+    6.8,
+    7.4,
+    6.0,
+    5.6,
+    7.5,
+    7.8,
+    6.3,
+    5.9,
+    8.0,
+    8.4
+  ],
+  1,
+  4
+);
+
+//Check that the procedure is working with the correct mathemathical rules and is producing accurate forecasting
+
+if (Math.floor(asnwerOne.predictions[0]) !== 7) {
+  throw new Error("Module is not producint accurate results");
+}
 
 //Check that the result contains two arrays with at least one result
 if (
@@ -9,7 +36,7 @@ if (
   asnwerOne.time.length < 1
 ) {
   throw new Error(
-    "Package is not returning an array with the forecasted values"
+    "Module is not returning an array with the forecasted values"
   );
 }
 
