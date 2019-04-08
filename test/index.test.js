@@ -23,6 +23,7 @@ const asnwerOne = simpleSalesForcasting(
   4
 );
 
+console.log("Starting test...");
 //Check that the procedure is working with the correct mathemathical rules and is producing accurate forecasting
 
 if (Math.floor(asnwerOne.predictions[0]) !== 7) {
@@ -67,3 +68,5 @@ try {
 if (ranWithoutError) {
   throw new Error("Error handling not triggered");
 }
+
+console.log("Test passed succesfully :)");
